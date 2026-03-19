@@ -20,7 +20,7 @@ var SPREADSHEET_ID = '1tfAxLmwvWTF6O0fd4JK0C7600vuuXaqKwloMMrXe3FM';
 var SHEET_NAME     = 'DadosQRCode'; // Nome da aba existente na planilha
 
 // Cabeçalhos da planilha
-var HEADERS = ['Data / Hora', 'Nome', 'E-mail', 'Área de Atuação', 'Tamanho do Escritório', 'Interesses', 'Origem'];
+var HEADERS = ['Data / Hora', 'Nome', 'E-mail', 'WhatsApp', 'Área de Atuação', 'Tamanho do Escritório', 'Interesses', 'Origem'];
 
 function getOrCreateSheet() {
   var ss    = SpreadsheetApp.openById(SPREADSHEET_ID);
@@ -45,10 +45,11 @@ function getOrCreateSheet() {
     sheet.setColumnWidth(1, 160); // Data/Hora
     sheet.setColumnWidth(2, 200); // Nome
     sheet.setColumnWidth(3, 240); // E-mail
-    sheet.setColumnWidth(4, 180); // Área
-    sheet.setColumnWidth(5, 180); // Escritório
-    sheet.setColumnWidth(6, 320); // Interesses
-    sheet.setColumnWidth(7, 120); // Origem
+    sheet.setColumnWidth(4, 160); // WhatsApp
+    sheet.setColumnWidth(5, 180); // Área
+    sheet.setColumnWidth(6, 180); // Escritório
+    sheet.setColumnWidth(7, 320); // Interesses
+    sheet.setColumnWidth(8, 120); // Origem
   }
 
   return sheet;
@@ -65,6 +66,7 @@ function doPost(e) {
       data.data        || new Date().toLocaleString('pt-BR'),
       data.nome        || '',
       data.email       || '',
+      data.whatsapp    || '',
       data.area        || '',
       data.escritorio  || '',
       data.interesses  || '',
@@ -96,6 +98,7 @@ function testarManualmente() {
     data:       new Date().toLocaleString('pt-BR'),
     nome:       'Dr. João Teste',
     email:      'joao@escritorio.com.br',
+    whatsapp:   '(11) 99999-9999',
     area:       'Trabalhista',
     escritorio: 'Solo (apenas eu)',
     interesses: 'Petições e Peças, Pesquisa Jurisprudencial'
@@ -106,6 +109,7 @@ function testarManualmente() {
     fakeLead.data,
     fakeLead.nome,
     fakeLead.email,
+    fakeLead.whatsapp,
     fakeLead.area,
     fakeLead.escritorio,
     fakeLead.interesses,

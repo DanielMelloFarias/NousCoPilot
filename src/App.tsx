@@ -144,7 +144,7 @@ export default function App() {
   const [sending,   setSending]   = useState(false);
 
   const [formData, setFormData] = useState({
-    nome: '', email: '', area: '', escritorio: '',
+    nome: '', email: '', whatsapp: '', area: '', escritorio: '',
     interesses: [] as string[],
   });
 
@@ -182,6 +182,7 @@ export default function App() {
           body:    JSON.stringify({
             nome:       formData.nome,
             email:      formData.email,
+            whatsapp:   formData.whatsapp,
             area:       formData.area,
             escritorio: formData.escritorio,
             interesses: formData.interesses.join(', '),
@@ -673,6 +674,12 @@ export default function App() {
                       <input id="email" type="email" required className="field-input" placeholder="voce@escritorio.com.br"
                         value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} />
                     </div>
+                  </div>
+
+                  <div>
+                    <label className="field-label" htmlFor="whatsapp">WhatsApp</label>
+                    <input id="whatsapp" type="tel" required className="field-input" placeholder="(11) 99999-9999"
+                      value={formData.whatsapp} onChange={e => setFormData(p => ({ ...p, whatsapp: e.target.value }))} />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
