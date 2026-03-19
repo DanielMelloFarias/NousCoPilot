@@ -1,0 +1,389 @@
+/* ═══════════════════════════════════════════════════════════════
+   NOUS Intelligence — Design System (Dark Gradient Premium)
+   UI/UX Pro Max · Cormorant Garamond + Montserrat
+   Style: Dark OLED + Glassmorphism · Navy Deep + Gold
+   Pattern: Social Proof-Focused | Scroll-Reveal Animations
+═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+@import "tailwindcss";
+
+/* ── Design Tokens ─────────────────────────────────────────── */
+@theme {
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-body:    "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+  /* Deep navy palette */
+  --color-bg:        #070F1C;
+  --color-bg-2:      #0A1628;
+  --color-bg-3:      #0D1E36;
+
+  /* Glass surfaces */
+  --color-surface:   rgba(255,255,255,0.045);
+  --color-surface-2: rgba(255,255,255,0.07);
+  --color-surface-3: rgba(255,255,255,0.025);
+
+  /* Navy brand */
+  --color-navy:      #0D3041;
+  --color-navy-mid:  #164863;
+  --color-navy-light:#2D5A87;
+
+  /* Gold accent */
+  --color-gold:      #C9A55C;
+  --color-gold-mid:  #B8935A;
+  --color-gold-bg:   rgba(201,165,92,0.07);
+
+  /* Text — high contrast on dark */
+  --color-ivory:     #E8F0F7;
+  --color-muted:     #7A9AB5;
+  --color-border:    rgba(255,255,255,0.08);
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background-color: #070F1C;
+  background-image:
+    radial-gradient(ellipse 120% 50% at 10% 20%,  rgba(201,165,92,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 80%  60% at 90% 80%,  rgba(13,48,65,0.6)   0%, transparent 50%),
+    radial-gradient(ellipse 60%  40% at 50% 50%,  rgba(9,20,40,0.8)    0%, transparent 70%),
+    linear-gradient(180deg, #060E1A 0%, #0A1628 30%, #0C1E38 60%, #070F1C 100%);
+  background-attachment: fixed;
+  color:            #E8F0F7;
+  font-family:      "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing:  antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Gold Gradient Text ────────────────────────────────────── */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #C9A55C 0%, #E0C07A 50%, #C9A55C 100%);
+  -webkit-background-clip: text;
+  background-clip:         text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Navy Gradient Text ────────────────────────────────────── */
+.text-navy-gradient {
+  background: linear-gradient(135deg, #A8C8E8 0%, #E8F0F7 60%, #C9A55C 100%);
+  -webkit-background-clip: text;
+  background-clip:         text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Section gradients ─────────────────────────────────────── */
+.bg-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,165,92,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 60%,  rgba(13,48,65,0.50)   0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 5%  80%,  rgba(201,165,92,0.04) 0%, transparent 50%),
+    transparent;
+}
+
+.bg-section-alt {
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.015) 0%,
+    rgba(255,255,255,0.025) 50%,
+    rgba(255,255,255,0.015) 100%
+  );
+  border-top:    1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.bg-cta {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,165,92,0.08) 0%, transparent 65%),
+    transparent;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ── Grid Pattern ──────────────────────────────────────────── */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(201,165,92,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,165,92,0.06) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 5%, transparent 75%);
+}
+
+/* ── Floating blobs ────────────────────────────────────────── */
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  animation: blob-pulse 8s ease-in-out infinite;
+}
+@keyframes blob-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  33%       { opacity: 0.6; transform: scale(1.08); }
+  66%       { opacity: 0.8; transform: scale(0.95); }
+}
+
+/* ── Shimmer border ────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.shimmer-border {
+  background: linear-gradient(90deg,
+    rgba(201,165,92,0.15) 0%,
+    rgba(201,165,92,0.55) 25%,
+    rgba(224,192,122,0.75) 50%,
+    rgba(201,165,92,0.55) 75%,
+    rgba(201,165,92,0.15) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Glow pulse ────────────────────────────────────────────── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(201,165,92,0.15), 0 0 60px rgba(201,165,92,0.05); }
+  50%       { box-shadow: 0 0 35px rgba(201,165,92,0.30), 0 0 90px rgba(201,165,92,0.10); }
+}
+.glow-gold { animation: glow-pulse 3s ease-in-out infinite; }
+
+/* ── Scroll reveal ─────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity  0.75s cubic-bezier(0.22,1,0.36,1),
+    transform 0.75s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1  { transition-delay: 0.08s; }
+.reveal-delay-2  { transition-delay: 0.16s; }
+.reveal-delay-3  { transition-delay: 0.24s; }
+.reveal-delay-4  { transition-delay: 0.32s; }
+.reveal-delay-5  { transition-delay: 0.42s; }
+.reveal-delay-6  { transition-delay: 0.52s; }
+
+/* ── Primary Button (Navy filled) ──────────────────────────── */
+.btn-primary {
+  display:          inline-flex;
+  align-items:      center;
+  justify-content:  center;
+  padding:          0.75rem 2rem;
+  background:       rgba(13,48,65,0.85);
+  color:            #E8F0F7;
+  font-family:      "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  font-weight:      600;
+  font-size:        0.75rem;
+  text-transform:   uppercase;
+  letter-spacing:   0.12em;
+  border-radius:    0.75rem;
+  border:           1px solid rgba(255,255,255,0.12);
+  text-decoration:  none;
+  cursor:           pointer;
+  backdrop-filter:  blur(8px);
+  transition:       all 0.25s cubic-bezier(0.4,0,0.2,1);
+  white-space:      nowrap;
+}
+.btn-primary:hover {
+  background:  rgba(22,72,99,0.9);
+  box-shadow:  0 8px 32px rgba(13,48,65,0.5);
+  transform:   translateY(-1px);
+  border-color: rgba(201,165,92,0.25);
+}
+.btn-primary:active { transform: scale(0.98); }
+
+/* ── Gold Button ───────────────────────────────────────────── */
+.btn-gold {
+  display:          inline-flex;
+  align-items:      center;
+  justify-content:  center;
+  padding:          0.75rem 2rem;
+  background:       linear-gradient(135deg, #B8935A 0%, #C9A55C 50%, #B8935A 100%);
+  background-size:  200% auto;
+  color:            #FFFFFF;
+  font-family:      "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  font-weight:      600;
+  font-size:        0.75rem;
+  text-transform:   uppercase;
+  letter-spacing:   0.12em;
+  border-radius:    0.75rem;
+  border:           1px solid rgba(201,165,92,0.4);
+  text-decoration:  none;
+  cursor:           pointer;
+  transition:       all 0.3s cubic-bezier(0.4,0,0.2,1);
+  white-space:      nowrap;
+}
+.btn-gold:hover {
+  background-position: right center;
+  box-shadow: 0 8px 32px rgba(184,147,90,0.45), 0 0 60px rgba(201,165,92,0.12);
+  transform:  translateY(-1px);
+  border-color: rgba(201,165,92,0.65);
+}
+.btn-gold:active { transform: scale(0.98); }
+
+/* ── Outline Button ────────────────────────────────────────── */
+.btn-outline {
+  display:          inline-flex;
+  align-items:      center;
+  justify-content:  center;
+  padding:          0.75rem 2rem;
+  background:       rgba(255,255,255,0.04);
+  color:            #E8F0F7;
+  font-family:      "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  font-weight:      600;
+  font-size:        0.75rem;
+  text-transform:   uppercase;
+  letter-spacing:   0.12em;
+  border-radius:    0.75rem;
+  border:           1px solid rgba(255,255,255,0.18);
+  text-decoration:  none;
+  cursor:           pointer;
+  backdrop-filter:  blur(8px);
+  transition:       all 0.25s cubic-bezier(0.4,0,0.2,1);
+  white-space:      nowrap;
+}
+.btn-outline:hover {
+  border-color:  rgba(201,165,92,0.45);
+  background:    rgba(201,165,92,0.07);
+  color:         #C9A55C;
+  transform:     translateY(-1px);
+}
+
+/* ── Section Tag ───────────────────────────────────────────── */
+.section-tag {
+  display:        inline-block;
+  padding:        0.3rem 0.9rem;
+  border-radius:  9999px;
+  border:         1px solid rgba(201,165,92,0.35);
+  background:     rgba(201,165,92,0.08);
+  font-size:      0.65rem;
+  font-weight:    700;
+  font-family:    "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color:          #C9A55C;
+}
+
+/* ── Glass Card ────────────────────────────────────────────── */
+.card {
+  background:    rgba(255,255,255,0.045);
+  border:        1px solid rgba(255,255,255,0.09);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:    all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.card:hover {
+  background:   rgba(255,255,255,0.07);
+  border-color: rgba(201,165,92,0.22);
+  box-shadow:   0 12px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,165,92,0.08);
+  transform:    translateY(-3px);
+}
+
+/* ── Form elements ─────────────────────────────────────────── */
+.field-label {
+  display:        block;
+  font-size:      0.62rem;
+  font-weight:    700;
+  font-family:    "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color:          #5A7A95;
+  margin-bottom:  0.45rem;
+}
+
+.field-input {
+  width:         100%;
+  background:    rgba(255,255,255,0.05);
+  border:        1px solid rgba(255,255,255,0.10);
+  color:         #E8F0F7;
+  padding:       0.8rem 1rem;
+  border-radius: 0.65rem;
+  font-size:     0.875rem;
+  font-family:   "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  outline:       none;
+  transition:    border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  appearance:    none;
+  -webkit-appearance: none;
+  backdrop-filter: blur(8px);
+}
+.field-input::placeholder { color: rgba(122,154,181,0.5); }
+.field-input:focus {
+  border-color: rgba(201,165,92,0.5);
+  background:   rgba(255,255,255,0.08);
+  box-shadow:   0 0 0 3px rgba(201,165,92,0.10);
+}
+.field-input option { background: #0D1E36; color: #E8F0F7; }
+
+/* ── Mock UI ───────────────────────────────────────────────── */
+.mock-field {
+  background:    rgba(255,255,255,0.04);
+  border:        1px solid rgba(255,255,255,0.07);
+  border-radius: 0.5rem;
+  padding:       0.6rem 0.75rem;
+}
+
+/* ── Generation progress bar ───────────────────────────────── */
+.gen-progress {
+  width: 0%;
+  animation: gen-anim 3s 0.8s ease-out forwards;
+}
+@keyframes gen-anim {
+  0%   { width: 0% }
+  50%  { width: 60% }
+  75%  { width: 74% }
+  100% { width: 78% }
+}
+
+/* ── Ticker ────────────────────────────────────────────────── */
+.ticker-outer  { overflow: hidden; }
+.ticker-strip  { display: flex; width: max-content; animation: ticker 32s linear infinite; }
+.ticker-item   {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             0.6rem;
+  margin:          0 2rem;
+  font-size:       0.62rem;
+  font-weight:     700;
+  font-family:     "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  text-transform:  uppercase;
+  letter-spacing:  0.25em;
+  color:           rgba(122,154,181,0.45);
+  white-space:     nowrap;
+}
+.grad-l { position: absolute; inset-y: 0; left:  0; width: 4rem; background: linear-gradient(to right, #0A1628, transparent); z-index: 1; pointer-events: none; }
+.grad-r { position: absolute; inset-y: 0; right: 0; width: 4rem; background: linear-gradient(to left,  #0A1628, transparent); z-index: 1; pointer-events: none; }
+
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Hero entrance animations ──────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-in-1 { animation: hero-in 0.7s 0.05s cubic-bezier(0.22,1,0.36,1) both; }
+  .animate-in-2 { animation: hero-in 0.8s 0.15s cubic-bezier(0.22,1,0.36,1) both; }
+  .animate-in-3 { animation: hero-in 0.8s 0.30s cubic-bezier(0.22,1,0.36,1) both; }
+  .animate-in-4 { animation: hero-in 0.8s 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+  .animate-in-5 { animation: hero-in 0.9s 0.60s cubic-bezier(0.22,1,0.36,1) both; }
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in-1,.animate-in-2,.animate-in-3,.animate-in-4,.animate-in-5 { animation: none; }
+  .blob          { animation: none; }
+  .ticker-strip  { animation: none; }
+  .shimmer-border{ animation: none; }
+  .glow-gold     { animation: none; }
+  .reveal        { opacity: 1; transform: none; }
+}
+
+/* ── No scrollbar ───────────────────────────────────────────── */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* ── Overscroll containment ────────────────────────────────── */
+.overflow-x-auto { overscroll-behavior-x: contain; }
