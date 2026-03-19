@@ -151,7 +151,7 @@ export default function App() {
   const { ref: sRef, on: sOn } = useInView(0.3);
   const n1 = useCounter(1847, 2200, sOn);
   const n2 = useCounter(83,   1700, sOn);
-  const n3 = useCounter(4200, 2600, sOn);
+  const n3 = useCounter(1500, 2600, sOn);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30);
